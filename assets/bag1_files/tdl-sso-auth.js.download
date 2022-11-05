@@ -1,0 +1,184 @@
+const base64encode = (arraybuffer) => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+  let bytes = new Uint8Array(arraybuffer),
+    i,
+    len = bytes.length,
+    base64 = '';
+
+  for (i = 0; i < len; i += 3) {
+    base64 += chars[bytes[i] >> 2];
+    base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+    base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+    base64 += chars[bytes[i + 2] & 63];
+  }
+
+  if (len % 3 === 2) {
+    base64 = base64.substring(0, base64.length - 1) + '=';
+  } else if (len % 3 === 1) {
+    base64 = base64.substring(0, base64.length - 2) + '==';
+  }
+
+  return base64;
+};
+
+const generateCodeChallenge = async (codeVerifier) => {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(codeVerifier);
+  const digest = await window.crypto.subtle.digest("SHA-256", data);
+  const base64Digest = base64encode(digest);
+  return base64Digest
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=/g, "");
+}
+
+function generateRandomStringTdlSsoAuth(length) {
+  let text = '';
+  const possible =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+  for (let i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
+const codeVerifierTdlSsoAuth = generateRandomStringTdlSsoAuth(128);
+const codeChallengeTdlSsoAuth = generateCodeChallenge(codeVerifierTdlSsoAuth);
+
+//Script to pick up the env
+const redirectUrlTdlSsoAuth = window.location.href;
+
+const selectScriptEnvTdlSsoAuth = (script) => {
+  const href = script.src;
+  if (href.includes('localhost') || href.includes('0.0.0.0'))
+    return 'http://localhost:8080/v2/';
+  if (href.includes('dev')) return 'https://dev-account.tatadigital.com/v2/';
+  if (href.includes('sit-account'))
+    return 'https://sit-account.tatadigital.com/v2/';
+  if (href.includes('pt')) return 'https://pt-account.tatadigital.com/v2/';
+  if (href.includes('sit-r2-account'))
+    return 'https://sit-r2-account.tatadigital.com/v2/';
+  if (href.includes('accounts')) return 'https://accounts.tatadigital.com/v2/';
+  if (href.includes('bf'))
+    return 'https://bf-account.tatadigital.com/v2/';
+  return 'https://dev-account.tatadigital.com/v2/';
+};
+
+const ssoOriginUrlTdlSsoAuth = selectScriptEnvTdlSsoAuth(
+  document.currentScript
+);
+
+const selectEnvTdlSsoAuthBaseUrl = () => {
+  const hrefApi = ssoOriginUrlTdlSsoAuth;
+  if (hrefApi.includes('localhost') || hrefApi.includes('0.0.0.0'))
+    return 'https://dapi.tatadigital.com';
+  if (hrefApi.includes('dev')) return 'https://dapi.tatadigital.com';
+  if (hrefApi.includes('sit-account')) return 'https://sapi.tatadigital.com';
+  if (hrefApi.includes('sit-r2-account'))
+    return 'https://ppapi.tatadigital.com';
+  if (hrefApi.includes('pt')) return 'https://pfapi.tatadigital.com';
+  if (hrefApi.includes('accounts')) return 'https://api.tatadigital.com';
+  if (hrefApi.includes('bf')) return 'https://bapi.tatadigital.com';
+  return 'https://dapi.tatadigital.com';
+};
+
+var tdlSsoAuth = {};
+
+const clientTagTdlSsoAuth = document.head.querySelector(
+  '[name=tdl-sso-client_id][content]'
+);
+if (clientTagTdlSsoAuth) {
+  const clientId = clientTagTdlSsoAuth.content;
+  if (clientId) {
+    (tdlSsoAuth.createSession = async (accessToken) => {
+      const response = await fetch(
+        selectEnvTdlSsoAuthBaseUrl() + '/api/v2/sso/create-session',
+        {
+          mode: 'cors',
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': selectEnvTdlSsoAuthBaseUrl(),
+            client_id: clientId,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      return response.status === 200;
+    }),
+      (tdlSsoAuth.getSession = async () => {
+        const response = await fetch(
+          selectEnvTdlSsoAuthBaseUrl() + '/api/v2/sso/check-session',
+          {
+            mode: 'cors',
+            method: 'POST',
+            body: JSON.stringify({
+              codeChallenge: await codeChallengeTdlSsoAuth,
+              redirectUrl: redirectUrlTdlSsoAuth,
+            }),
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': selectEnvTdlSsoAuthBaseUrl(),
+              client_id: clientId,
+            },
+          }
+        );
+        if (response.status === 200) {
+          return response.json().then((res) => {
+            if (res.authCode) {
+              return {
+                authCode: res.authCode,
+                codeVerifier: codeVerifierTdlSsoAuth,
+              };
+            } else return { authCode: null, codeVerifier: null };
+          });
+        } else return { authCode: null, codeVerifier: null };
+      }),
+      // (tdlSsoAuth.getAccessToken = async (authCode, codeVerifier) => {
+      //   const response = await fetch(
+      //     selectEnvTdlSsoAuth(document.currentScript) +
+      //       '/access-token/' +
+      //       authCode,
+      //     {
+      //       mode: 'cors',
+      //       method: 'POST',
+      //       body: JSON.stringify({
+      //         codeVerifier: codeVerifier,
+      //       }),
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         'Access-Control-Allow-Origin': '*',
+      //         client_id: clientId,
+      //         client_secret: '561aac8a-0b4a-4636-a512-9e42e4a04688',
+      //       },
+      //     }
+      //   );
+      //   if (response.status === 200) {
+      //     return response.json().then((res) => res.accessToken);
+      //   }
+      // }),
+      (tdlSsoAuth.deleteSession = async (logoutAccessToken) => {
+        const response = await fetch(
+          selectEnvTdlSsoAuthBaseUrl() + '/api/v2/sso/signout',
+          {
+            mode: 'cors',
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': selectEnvTdlSsoAuthBaseUrl(),
+              client_id: clientId,
+              Authorization: `Bearer ${logoutAccessToken}`,
+            },
+          }
+        );
+        return response.status === 200;
+      });
+  }
+} else {
+  console.log(
+    'TDL SSO [Error Log]: Please add <meta name="tdl-sso-client_id" content="CLIENT-ID"> in html head'
+  );
+}

@@ -1,0 +1,439 @@
+.DesktopFooter__contentHolder {
+    width: 100%;
+    height: auto;
+    background: #fff;
+}
+.DesktopFooter__linkAndSuscribeHolder {
+    width: 100%;
+    height: auto;
+    max-width: 1200px;
+    margin: auto;
+    padding: 45px 0px;
+    display: flex;
+    flex-direction: row;
+}
+.DesktopFooter__linkHolder {
+    width: 60%;
+    height: auto;
+    display: flex;
+
+    flex-wrap: wrap;
+}
+.DesktopFooter__newsLetterSection {
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.DesktopFooter__newsLetterHeading {
+    width: 100%;
+    height: auto;
+    color: #212121;
+    font-size: 14px;
+    font-family: semibold;
+    margin-bottom: 20px;
+}
+.DesktopFooter__linkSection {
+    width: 33.33%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.DesktopFooter__linkHeader {
+    width: 100%;
+    height: auto;
+    color: #212121;
+    font-size: 14px;
+    font-family: semibold;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+.DesktopFooter__buttonAndTextBoxHolder {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+.DesktopFooter__textBoxHolder {
+    width: 50%;
+    height: 33px;
+    display: flex;
+}
+.DesktopFooter__buttonHolder {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: row-reverse;
+}
+.DesktopFooter__button {
+    width: auto;
+    height: auto;
+    display: flex;
+}
+.DesktopFooter__link {
+    width: 100%;
+    height: auto;
+    color: #212121;
+    font-size: 13px;
+    font-family: light;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.DesktopFooter__footerBottomHolder {
+    width: 100%;
+    height: 100px;
+    background: #f9f9f9;
+}
+.DesktopFooter__socialLinkAndLogoHolder {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+}
+.DesktopFooter__socialIconHolder {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.DesktopFooter__downLoadAppHolder {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.DesktopFooter__downLoaAppText {
+    width: auto;
+    height: auto;
+    color: #000;
+    font-size: 14px;
+    font-family: regular;
+    display: flex;
+    margin-right: 15px;
+}
+.DesktopFooter__appIconHolder {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.DesktopFooter__socialIcon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    margin-right: 10px;
+}
+.DesktopFooter__companyLogo {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.DesktopFooter__copyRightText {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #212121;
+    font-size: 14px;
+    font-family: light;
+}
+.DesktopFooter__footerData {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    color: #000;
+    font-size: 14px;
+    font-family: regular !important;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.DesktopFooter__footerDataPlp {
+    width: 50%;
+    margin-left: 12%;
+    color: #000;
+    font-size: 14px;
+    font-family: regular !important;
+    line-height: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.DesktopFooter__footerDataPlpNull {
+    width: 77%;
+    margin-left: 13%;
+    color: #000;
+    font-size: 14px;
+    font-family: regular !important;
+    line-height: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.DesktopFooter__footerDataWrapper {
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
+.DesktopFooter__footerData a {
+    text-decoration: underline;
+}
+.DesktopFooter__footerData [style] {
+    font-family: regular !important;
+}
+
+.DesktopFooter__desktopFooterProductListWrapper {
+    width: 30%;
+    height: auto;
+    display: inline-block;
+    margin-left: 55px;
+    margin-bottom: 60px;
+    vertical-align: top;
+}
+.DesktopFooter__desktopFooterProductListWrapperNull {
+    display: none;
+}
+.DesktopFooter__popularSearches {
+    margin-top: 30px;
+}
+.DesktopFooter__seoPagetitle {
+    text-indent: -99999px;
+    position: absolute;
+    height: 0;
+}
+
+.DesktopFooter__categoryLinktitle {
+    line-height: normal;
+    font-weight: normal;
+    color: #212121;
+    font-size: 14px;
+    font-family: semibold;
+    margin: 0 0 11px;
+    text-transform: capitalize;
+}
+.DesktopFooter__categoryLink {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    display: inline-block;
+}
+.DesktopFooter__categoryLink:hover {
+    color: #ff1744;
+}
+.DesktopFooter__categoryLinkDivider {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    margin: 0 8px;
+}
+.DesktopFooter__categoryLinkDivider:last-child {
+    display: none;
+}
+
+.DesktopFooter__offeringsWrapper {
+    display: block;
+}
+.DesktopFooter__offeringsTitle {
+    line-height: normal;
+    font-weight: normal;
+    color: #212121;
+    font-size: 14px;
+    font-family: semibold;
+    margin: 0 0 11px;
+    text-transform: capitalize;
+}
+.DesktopFooter__offeringsLink {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    display: inline-block;
+}
+.DesktopFooter__offeringsLink:hover {
+    color: #ff1744;
+}
+.DesktopFooter__divider {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    margin: 0 8px;
+}
+.DesktopFooter__divider:last-child {
+    display: none;
+}
+
+.TrustComponent__base {
+  width: 100%;
+  min-height: 120px;
+  height: auto;
+  background-color: #f9f9f9;
+}
+.TrustComponent__iconWithCenter {
+  width: 100%;
+  height: auto;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  line-height: 120px;
+}
+.TrustComponent__iconWithText {
+  width: 25%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.TrustComponent__logo {
+  width: auto;
+  height: auto;
+}
+.TrustComponent__text {
+  width: auto;
+  height: auto;
+  padding-left: 15px;
+  font-size: 14px;
+  color: #212121;
+  font-family: semibold;
+}
+
+.DesktopFooterProductList__baseWrapper {
+  width: 100%;
+  height: auto;
+}
+.DesktopFooterProductList__base {
+  width: 100%;
+  height: auto;
+}
+
+.DesktopFooterProductList__header {
+  color: #4a4a4a;
+  font-size: 16px;
+  letter-spacing: 0.68px;
+  font-family: semibold;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+}
+
+.DesktopFooterProductList__productListWrapper {
+  width: 100%;
+  height: auto;
+}
+.DesktopFooterProductList__productListHeader {
+  color: #4a4a4a;
+  font-size: 11px;
+  letter-spacing: 0.47px;
+  font-family: semibold;
+  text-transform: capitalize;
+  margin-bottom: 16px;
+}
+
+.DesktopFooterProductList__productListDetailsWrapper {
+  color: #4a4a4a;
+  font-size: 11px;
+  letter-spacing: 0.47px;
+  font-family: light;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+  padding-top: 20px;
+}
+
+.DesktopFooterProductList__productListRow {
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+.DesktopFooterProductList__productListDetailWrapper {
+  display: inline-block;
+  width: 85%;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.DesktopFooterProductList__productListDetail {
+  text-decoration: underline;
+  height: auto;
+}
+
+.DesktopFooterProductList__productListPrice {
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+  padding-left: 16px;
+}
+
+.DesktopFooterProductList__lastUpdated {
+  color: #8d8d8d;
+  font-size: 11px;
+  letter-spacing: 0.47px;
+  font-family: light;
+  padding-top: 20px;
+}
+.DesktopFooterProductList__priceText {
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+  padding-left: 16px;
+}
+
+.DesktopFooterProductList__productListHeaderLeft {
+  width: 85%;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.SimilarCategories__title {
+    line-height: normal;
+    font-weight: normal;
+    color: #212121;
+    font-size: 14px;
+    font-family: semibold;
+    margin: 0 0 11px;
+    text-transform: capitalize;
+}
+.SimilarCategories__link {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    display: inline-block;
+}
+.SimilarCategories__link:hover {
+    color: #ff1744;
+}
+.SimilarCategories__divider {
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 2.33;
+    letter-spacing: normal;
+    color: #212121;
+    margin: 0 8px;
+}
+.SimilarCategories__divider:last-child {
+    display: none;
+}
+
